@@ -1,0 +1,126 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: ops-podinfo
+  namespace: podinfo
+spec:
+  chart:
+    spec:
+      chart: podinfo
+      reconcileStrategy: ChartVersion
+      sourceRef:
+        kind: HelmRepository
+        name: podinfo
+      version: '>4.0.0'
+  interval: 1m0s
+  releaseName: ops-podinfo
+  values:
+    affinity: {}
+    backend: null
+    backends: []
+    cache: ""
+    certificate:
+      create: false
+      dnsNames:
+      - podinfo
+      issuerRef:
+        kind: ClusterIssuer
+        name: self-signed
+    faults:
+      delay: false
+      error: false
+      testFail: false
+      testTimeout: false
+      unhealthy: false
+      unready: false
+    h2c:
+      enabled: false
+    host: null
+    hpa:
+      cpu: null
+      enabled: false
+      maxReplicas: 10
+      memory: null
+      requests: null
+    image:
+      pullPolicy: IfNotPresent
+      repository: ghcr.io/stefanprodan/podinfo
+      tag: 6.4.1
+    ingress:
+      annotations: {}
+      className: ""
+      enabled: false
+      hosts:
+      - host: podinfo.local
+        paths:
+        - path: /
+          pathType: ImplementationSpecific
+      tls: []
+    linkerd:
+      profile:
+        enabled: false
+    logLevel: info
+    nodeSelector: {}
+    podAnnotations: {}
+    probes:
+      liveness:
+        failureThreshold: 3
+        initialDelaySeconds: 1
+        periodSeconds: 10
+        successThreshold: 1
+        timeoutSeconds: 5
+      readiness:
+        failureThreshold: 3
+        initialDelaySeconds: 1
+        periodSeconds: 10
+        successThreshold: 1
+        timeoutSeconds: 5
+      startup:
+        enable: false
+        failureThreshold: 20
+        initialDelaySeconds: 10
+        periodSeconds: 10
+        successThreshold: 1
+        timeoutSeconds: 5
+    redis:
+      enabled: false
+      repository: redis
+      tag: 7.0.7
+    replicaCount: 1
+    resources:
+      limits: null
+      requests:
+        cpu: 1m
+        memory: 16Mi
+    securityContext: {}
+    service:
+      annotations: {}
+      enabled: true
+      externalPort: 9898
+      grpcPort: 9999
+      grpcService: podinfo
+      hostPort: null
+      httpPort: 9898
+      metricsPort: 9797
+      nodePort: 31198
+      type: NodePort
+    serviceAccount:
+      enabled: false
+      imagePullSecrets: []
+      name: null
+    serviceMonitor:
+      additionalLabels: {}
+      enabled: false
+      interval: 15s
+    tls:
+      certPath: /data/cert
+      enabled: false
+      hostPort: null
+      port: 9899
+      secretName: null
+    tolerations: []
+    ui:
+      color: blue
+      logo: ""
+      message: ""
