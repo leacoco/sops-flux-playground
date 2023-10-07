@@ -36,7 +36,6 @@ spec:
   values:
     adminUser:
       create: true
-      passwordHash: $2a$10$fweAlRl4kfD/woByTIGZBON/Sse.Tqe7LlZmsBXfMgxRfV6TLFkUG
+      passwordHash: $2a$10$vhebCYQm4PFEC7TOgDkUaeXWr1dMcHqQ73bvWXggaNXPPvDHGQdD.
       username: admin
-    service:
-      type: NodePort
+
