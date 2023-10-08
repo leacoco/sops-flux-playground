@@ -32,3 +32,9 @@ sops --encrypt \
     --encrypted-regex '^^(data|stringData)$' \
     --pgp <Value of your public key> \
     --in-place <Path to your secret.yaml>
+
+
+# Using flux and age to stop secret in git for k8s
+
+https://medium.com/picus-security-engineering/manage-your-secrets-with-mozilla-sops-and-gitops-toolkit-flux-cd-v2-7aa98f626001
+
